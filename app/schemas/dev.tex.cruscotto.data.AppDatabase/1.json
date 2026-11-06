@@ -1,0 +1,379 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "c9a46b85c271e58c12041496b609a16e",
+    "entities": [
+      {
+        "tableName": "categories",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `kind` TEXT NOT NULL, `name` TEXT NOT NULL, `pct` REAL NOT NULL, `isBuffer` INTEGER NOT NULL, `bufferOrder` INTEGER NOT NULL, `sort` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pct",
+            "columnName": "pct",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isBuffer",
+            "columnName": "isBuffer",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bufferOrder",
+            "columnName": "bufferOrder",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sort",
+            "columnName": "sort",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "txns",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `amountCents` INTEGER NOT NULL, `epochDay` INTEGER NOT NULL, `categoryId` TEXT NOT NULL, `note` TEXT NOT NULL, `serviceLogId` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amountCents",
+            "columnName": "amountCents",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "epochDay",
+            "columnName": "epochDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoryId",
+            "columnName": "categoryId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serviceLogId",
+            "columnName": "serviceLogId",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_txns_epochDay",
+            "unique": false,
+            "columnNames": [
+              "epochDay"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_txns_epochDay` ON `${TABLE_NAME}` (`epochDay`)"
+          },
+          {
+            "name": "index_txns_categoryId",
+            "unique": false,
+            "columnNames": [
+              "categoryId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_txns_categoryId` ON `${TABLE_NAME}` (`categoryId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "cars",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `plate` TEXT NOT NULL, `model` TEXT NOT NULL, `year` INTEGER, `fuel` TEXT NOT NULL, `km` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "plate",
+            "columnName": "plate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "model",
+            "columnName": "model",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "fuel",
+            "columnName": "fuel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "km",
+            "columnName": "km",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "deadlines",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `carId` TEXT NOT NULL, `type` TEXT NOT NULL, `dueEpochDay` INTEGER, `recurMonths` INTEGER NOT NULL, `kmDue` INTEGER, `recurKm` INTEGER NOT NULL, `costCents` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "carId",
+            "columnName": "carId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dueEpochDay",
+            "columnName": "dueEpochDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "recurMonths",
+            "columnName": "recurMonths",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kmDue",
+            "columnName": "kmDue",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "recurKm",
+            "columnName": "recurKm",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "costCents",
+            "columnName": "costCents",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_deadlines_carId",
+            "unique": false,
+            "columnNames": [
+              "carId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_deadlines_carId` ON `${TABLE_NAME}` (`carId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "service_logs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `carId` TEXT NOT NULL, `type` TEXT NOT NULL, `epochDay` INTEGER NOT NULL, `km` INTEGER, `costCents` INTEGER NOT NULL, `description` TEXT NOT NULL, `place` TEXT NOT NULL, `txnId` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "carId",
+            "columnName": "carId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "epochDay",
+            "columnName": "epochDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "km",
+            "columnName": "km",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "costCents",
+            "columnName": "costCents",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "place",
+            "columnName": "place",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "txnId",
+            "columnName": "txnId",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_service_logs_carId",
+            "unique": false,
+            "columnNames": [
+              "carId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_service_logs_carId` ON `${TABLE_NAME}` (`carId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "settings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `salaryCents` INTEGER NOT NULL, `carCategoryId` TEXT NOT NULL, `totpSecret` TEXT NOT NULL, `totpOn` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "salaryCents",
+            "columnName": "salaryCents",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "carCategoryId",
+            "columnName": "carCategoryId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totpSecret",
+            "columnName": "totpSecret",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totpOn",
+            "columnName": "totpOn",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c9a46b85c271e58c12041496b609a16e')"
+    ]
+  }
+}
