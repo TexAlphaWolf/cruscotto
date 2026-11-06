@@ -37,7 +37,7 @@ jobs:
           CRUSCOTTO_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           CRUSCOTTO_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           CRUSCOTTO_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew --no-daemon testReleaseUnitTest assembleRelease
+        run: ./gradlew --no-daemon testDebugUnitTest assembleRelease
 
       - name: Name the APK after the tag
         run: cp app/build/outputs/apk/release/app-release.apk "cruscotto-${GITHUB_REF_NAME}.apk"
